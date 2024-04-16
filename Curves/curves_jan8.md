@@ -2,6 +2,9 @@
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L267-L270
 
+## Severity
+High
+
 ## Impact
 If the amount of Ether to be sent is greater than the amount actually needed in `_buyCurvesToken` function, the left amount will not be refunded to the buyer. Therefore, the buyer will lose the left amount.
 
@@ -21,11 +24,12 @@ VS Code
 ## Recommended Mitigation Steps
 Refund left amount of ETH to the account when received ETH is greater than sum of `price` and `totalFee`.
 
-
-
 # Title 2: When an account sell its curves token, the protocol fee is not transfered to `protocolFeeDestination`.
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L225-L233
+
+## Severity
+High
 
 ## Impact
 When an account sell its curves token, the protocol is calculated but not transfered to anywhere.
@@ -109,10 +113,12 @@ Add logic that send protocol fee to right destination when `isBuy` is `false` in
     }
 ```
 
-
 # Title 3: As the length of an account's `ownedCurvesTokenSubjects` continues to increase, a DoS may occur when that account purchases new curves tokens.
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L328-L336
+
+## Severity
+High
 
 ## Impact
 As the number of curves tokens owned by an account increases, buying new curve token of the account may fall into DoS.
@@ -164,6 +170,9 @@ In `_addOwnedCurvesTokenSubject` function, change the logic that check if passed
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/FeeSplitter.sol#L35-L37
 
+## Severity
+High
+
 ## Impact
 Since `setCurves` function of `FeeSplitter` contract isn't be protected by a trusted role, anyone can change `curves` contract address.
 
@@ -187,6 +196,9 @@ Add modifier that protect with a trusted role to `setCurves` function.
 # Title 5: In `Curves.setWhiteList` function `merkleRoot` can be zero
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L394-L402
+
+## Severity
+Medium
 
 ## Impact
 In `setWhitelist` function of `Curves` contract, `merkleRoot` can be zero and anyone can be whitelisted since there is no validation.
@@ -229,6 +241,9 @@ Add validation for `merkleRoot` as follow.
 # Title 6: Holders can lose their holder fee due to updating of userFeeOffset of `onBalanceChange` function
 
 https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L246-L249
+
+## Severity
+Medium
 
 # Impact
 When holders buy/sell the curves tokens, they can't claim the past `cumulativeFeePerToken` since `userFeeOffset` is updated in `onBalanceChange` function.
@@ -306,6 +321,9 @@ The code line that updates `userFeeOffset[account]` in `onBalanceChange` functio
 ```
 
 # Title 7: When a user tries to deploy new curves token with default name and symbol, the malicious user can make it would be reverted.
+
+## Severity
+Medium
 
 ## Impact
 When subjects try to deploy their curves token by using the default name and symbol, a malicious user can make it would be reverted.
@@ -406,6 +424,9 @@ Move the codeline that increasing `_curvesTokenCounter` as follow:
 
 
 # Title 8: Because the `transferCurvesToken` function doesn't check if `amount` is greater than 0, a malicious user can permanently block other users from buying new curves tokens and depositing.
+
+## Severity
+Medium
 
 ## Impact
 A malicious user can increase another user's number of owned curves token massively by using `transferCurvesToken` function and this may occur DoS when the victim tries to buy new curves token or call `deposit` function.
@@ -520,6 +541,9 @@ You should revert if `amount` is not greater than 0, in `_transfer` function.
 ```
 
 # Title 9: Because the `transferCurvesToken` function doesn't check if `amount` is greater than 0, a malicious user can permanently block other users from buying new curves tokens and depositing.
+
+## Severity
+Medium
 
 ## Impact
 A malicious user can increase another user's number of owned curves token massively by using `transferCurvesToken` function and this may occur DoS when the victim tries to buy new curves token or call `deposit` function.
