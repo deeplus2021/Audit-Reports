@@ -1,7 +1,5 @@
 # Title 1: In `_buyCurvesToken` function, the left amount of ETH sent by the buyer is not refunded to him.
 
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L267-L270
-
 ## Severity
 High
 
@@ -25,8 +23,6 @@ VS Code
 Refund left amount of ETH to the account when received ETH is greater than sum of `price` and `totalFee`.
 
 # Title 2: When an account sell its curves token, the protocol fee is not transfered to `protocolFeeDestination`.
-
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L225-L233
 
 ## Severity
 High
@@ -115,8 +111,6 @@ Add logic that send protocol fee to right destination when `isBuy` is `false` in
 
 # Title 3: As the length of an account's `ownedCurvesTokenSubjects` continues to increase, a DoS may occur when that account purchases new curves tokens.
 
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L328-L336
-
 ## Severity
 High
 
@@ -168,8 +162,6 @@ In `_addOwnedCurvesTokenSubject` function, change the logic that check if passed
 
 # Title 4: `setCurves` function of `FeeSplitter` contract should be protected by a trusted role.
 
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/FeeSplitter.sol#L35-L37
-
 ## Severity
 High
 
@@ -194,8 +186,6 @@ Add modifier that protect with a trusted role to `setCurves` function.
 
 
 # Title 5: In `Curves.setWhiteList` function `merkleRoot` can be zero
-
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L394-L402
 
 ## Severity
 Medium
@@ -239,8 +229,6 @@ Add validation for `merkleRoot` as follow.
 
 
 # Title 6: Holders can lose their holder fee due to updating of userFeeOffset of `onBalanceChange` function
-
-https://github.com/code-423n4/2024-01-curves/blob/516aedb7b9a8d341d0d2666c23780d2bd8a9a600/contracts/Curves.sol#L246-L249
 
 ## Severity
 Medium
