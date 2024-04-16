@@ -372,12 +372,6 @@ As the result, the round isn't drawn and players will continue to deposit to the
 ## Impact
 Since the depositing by calling `depositETHIntoMultipleRounds` function doesnt' check that maximum number of deposits is reached, players can deposit to upcoming rounds bypassing restriction of maximum number of deposits and it makes the round cannot be drawn when it should be.
 
-## Code Snippet
-
-https://github.com/sherlock-audit/2024-01-looksrare-biginfo2012/blob/afdf67041cc43ba1b96553ac7ed73ccce08a8bba/contracts-yolo/contracts/YoloV2.sol#L312-L362
-
-https://github.com/sherlock-audit/2024-01-looksrare-biginfo2012/blob/afdf67041cc43ba1b96553ac7ed73ccce08a8bba/contracts-yolo/contracts/YoloV2.sol#L1417-L1455
-
 ## Tool used
 
 Manual Review
