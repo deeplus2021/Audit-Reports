@@ -1,4 +1,4 @@
-# Title01: The amounts of token for buyers and creators isn't calculated correctly based on received due to incorrect updating total emitted amount.
+# Title 1: The amounts of token for buyers and creators isn't calculated correctly based on received due to incorrect updating total emitted amount.
 
 ## Severity
 High
@@ -117,7 +117,7 @@ Move line 188 to line 182:
 -       if (totalTokensForCreators > 0) emittedTokenWad += totalTokensForCreators;
 ```
 
-# Title02: In `Erc20TokenEmitter`, treasury and creators can bypass the preventing them from buying tokens by including themselves in addresses param.
+# Title 2: In `Erc20TokenEmitter`, treasury and creators can bypass the preventing them from buying tokens by including themselves in addresses param.
 
 ## Severity
 Medium
@@ -157,7 +157,7 @@ VSCode
 Additionally, you should add logic that check if treasury or creators of emiiter is included in ArtPiece creators when start auction or creat new piece. Without it, the auction can fall into DoS due to above restriction code.
 
 
-# Title03: Since `buyToken` function has no slippage checking, users can get less tokens than expected when they buy tokens directly
+# Title 3: Since `buyToken` function has no slippage checking, users can get less tokens than expected when they buy tokens directly
 
 ## Severity
 Medium
